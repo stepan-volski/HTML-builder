@@ -10,21 +10,15 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.setPrompt(`Hi! Please input your text: `);
+rl.setPrompt("Hi! Please input your text:"  + "\n");
 rl.prompt();
 
 rl.on('line', (input) => {
     if (input === 'exit') {
-        endDialog();
+        rl.close();
         return;
     }
     writeStream.write(input + "\n");
 });
 
-rl.on('close', () => endDialog());
-
-function endDialog() {
-    writeStream.end();
-    rl.close();
-    console.log("Dialog closed! Bye-bye!");
-}
+rl.on('close', () => console.log("Dialog closed! Bye-bye!"));
